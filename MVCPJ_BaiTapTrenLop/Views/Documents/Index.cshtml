@@ -1,0 +1,43 @@
+﻿@model List<MVCPJ_BaiTapTrenLop.Models.LegalDocument>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@*  <i class="fa-regular fa-file"></i> Tieu de
+    Tom tat
+    Ngay phat hanh
+    Tai ve <link>
+
+*@
+
+@foreach (MVCPJ_BaiTapTrenLop.Models.LegalDocument item in Model)
+{
+    <div class="card m-2 p-1" style="width: auto;">
+        <div class="card-body">
+            <h5 class="card-title"><i class="fa fa-file-archive-o m-1"></i>@item.Title Số hiệu: @item.SerialNumber</h5>
+            @*<h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>*@
+            <h6 class="card-subtitle mb-2 text-body-secondary">@item.CreatedDate.ToString("HH:mm - dd/MM/yyyy")</h6>
+            <p class="card-text">@(Html.Raw(item.Summary + "...")) <a class="d-inline" href="/Documents/Details/@item.DocumentID">Xem thêm</a></p>
+            <a download="" href="@item.FilePath" class="card-link">Tải về...</a>
+        </div>
+    </div>
+}
+
+<div class="text-center mt-4">
+    @if (ViewBag.TotalRecords > ViewBag.PageSize)
+    {
+        int totalPages = (int)Math.Ceiling((double)ViewBag.TotalRecords / ViewBag.PageSize);
+        for (int i = 1; i <= totalPages; i++)
+        {
+            if (i == ViewBag.CurrentPage)
+            {
+                <strong>@i</strong>
+            }
+            else
+            {
+                @Html.ActionLink(i.ToString(), "Index", new { pageNumber = i, query = ViewBag.Query }, new { @class = "btn btn-outline-secondary btn-sm mx-1" })
+            }
+        }
+    }
+</div>

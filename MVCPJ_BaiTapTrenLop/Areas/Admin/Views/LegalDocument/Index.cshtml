@@ -1,0 +1,32 @@
+﻿@model IEnumerable<MVCPJ_BaiTapTrenLop.Models.LegalDocument>
+
+@{
+    ViewBag.Title = "Quản lý văn bản pháp lý";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Danh sách văn bản pháp lý</h2>
+
+<a href="/Admin/LegalDocument/Create" class="btn btn-primary">Tạo mới văn bản</a>
+
+<table class="table">
+    <tr>
+        <th>Số hiệu</th>
+        <th>Tiêu đề</th>
+        <th>Ngày tạo</th>
+        <th>Thao tác</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.SerialNumber</td>
+            <td>@item.Title</td>
+            <td>@item.CreatedDate.ToString("HH:mm - dd/MM/yyyy")</td>
+            <td>
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.DocumentID }) |
+                @Html.ActionLink("Sửa", "Edit", new { id = item.DocumentID }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.DocumentID })
+            </td>
+        </tr>
+    }
+</table>

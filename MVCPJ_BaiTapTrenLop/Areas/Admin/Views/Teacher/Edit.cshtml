@@ -1,0 +1,85 @@
+﻿@model MVCPJ_BaiTapTrenLop.Models.Teacher
+
+@{
+    ViewBag.Title = "Chỉnh sửa giáo viên";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2 class="text-center mb-4">Chỉnh sửa giáo viên</h2>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        @using (Html.BeginForm("Edit", "Teacher", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <!-- Hidden field for TeacherID -->
+            @Html.HiddenFor(model => model.TeacherID)
+
+            <!-- Full Name -->
+            <div class="form-group">
+                @Html.LabelFor(model => model.FullName)
+                @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email)
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+
+            <!-- Phone Number -->
+            <div class="form-group">
+                @Html.LabelFor(model => model.PhoneNumber)
+                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <!-- Address -->
+            <div class="form-group">
+                @Html.LabelFor(model => model.Address)
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="form-group">
+                @Html.LabelFor(model => model.DateOfBirth)
+                @*@Html.EditorFor(model => model.DateOfBirth.ToString("yyyy-"), new { htmlAttributes = new { @class = "form-control", type = "date" } })*@
+                <input type="date" class="form-control" name="DateOfBirth" value="@Model.DateOfBirth.ToString("yyyy-MM-dd")"/>
+            </div>
+
+            <!-- Gender -->
+            <div class="form-group">
+                @Html.LabelFor(model => model.Gender)
+                @Html.DropDownListFor(model => model.Gender, new SelectList(new[] { "Nam", "Nữ", "Khác" }), "Chọn giới tính", new { @class = "form-control" })
+            </div>
+
+            <!-- Department -->
+            <div class="form-group">
+                @Html.LabelFor(model => model.Department)
+                @Html.EditorFor(model => model.Department, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Department, "", new { @class = "text-danger" })
+            </div>
+
+            <!-- Current Image -->
+            <div class="form-group">
+                <label>Ảnh hiện tại:</label>
+                <img src="@Url.Content(Model.ImagePath)" alt="Avatar" class="img-thumbnail" style="max-width: 100px;" />
+            </div>
+
+            <!-- New Image Upload -->
+            <div class="form-group">
+                <label for="ImagePath">Cập nhật ảnh đại diện:</label>
+                <input type="file" name="file" id="ImagePath" class="form-control-file" />
+                <input type="hidden" name="ImagePath" value="@Model.ImagePath" />
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group text-center mt-4">
+                <input type="submit" value="Lưu" class="btn btn-success" />
+                @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-secondary ml-2" })
+            </div>
+        }
+    </div>
+</div>

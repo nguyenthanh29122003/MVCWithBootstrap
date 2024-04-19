@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Create a product";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<h2>Create a product</h2>
+
+<form action="/products/create" method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <label for="productName">Product name: </label>
+            <input type="text" class="form-control" id="productName" name="productName" placeholder="Product name"/>
+        </div>
+        <div class="col-md-6">
+            <label for="Price">Product price: </label>
+            <input type="number" class="form-control" id="Price" name="Price" placeholder="Product price"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="dateOfPurchase">Date of purchase: </label>
+            <input type="date" class="form-control" id="dateOfPurchase" name="dateOfPurchase" placeholder="Date Of Purchase"/>
+        </div>
+        <div class="col-md-6">
+            <label for="availabilityStatus">Availability Status: </label>
+            @*<input type="text" class="form-control"  placeholder="Availability Status"/>*@
+            <select class="form-control" id="availabilityStatus" name="availabilityStatus">
+                <option value="">Please select...</option>
+                <option value="InStock">In Stock</option>
+                <option value="OutOfStock">Out Of Stock</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="categoryId">Category: </label>
+            @*<input type="number" class="form-control" id="categoryId" name="categoryId" placeholder="Category Id"/>*@
+            <select class="form-control" id="categoryId" name="categoryId">
+                <option value="">Please select...</option>
+                @{
+                    foreach (EF_BD_First.Models.Category item in ViewBag.Categories)
+                    {
+                        <option value="@item.CategoryID">@item.CategoryName</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="brandId">Brand: </label>
+            @*<input type="number" class="form-control" id="brandId" name="brandId" placeholder="Brand Id"/>*@
+            <select class="form-control" id="brandId" name="brandId">
+                <option value="">Please select...</option>
+                @{
+                    foreach (EF_BD_First.Models.Brand item in ViewBag.Brands)
+                    {
+                        <option value="@item.BrandID">@item.BrandName</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mx-3 form-check">
+            <input type="checkbox" class="form-check-input" id="active" name="active" value="true" />
+            <label for="categoryId" class="form-check-label">Active</label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Create</button>
+    <a href="/products/index" class="btn btn-danger">Cancel</a>
+</form>

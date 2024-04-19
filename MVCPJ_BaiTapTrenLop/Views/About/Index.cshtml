@@ -1,0 +1,14 @@
+﻿@model MVCPJ_BaiTapTrenLop.Models.About
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<h2>Giới thiệu</h2>
+
+<h3>@Model.Title</h3>
+
+<div>
+    @Html.Raw(Model.Content)
+</div>

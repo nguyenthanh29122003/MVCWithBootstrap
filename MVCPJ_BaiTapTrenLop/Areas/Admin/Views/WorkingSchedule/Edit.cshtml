@@ -1,0 +1,54 @@
+﻿@model MVCPJ_BaiTapTrenLop.Models.WorkingSchedule
+
+@{
+    ViewBag.Title = "Chỉnh sửa lịch công tác";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2 class="text-center mb-4">Chỉnh sửa lịch công tác</h2>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.HiddenFor(model => model.ScheduleID)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Title)
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Content)
+                @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Location)
+                @Html.TextBoxFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Participants)
+                @Html.TextBoxFor(model => model.Participants, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Participants, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Note)
+                @Html.TextBoxFor(model => model.Note, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group text-center mt-4">
+                <input type="submit" value="Lưu" class="btn btn-success" />
+                @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-secondary ml-2" })
+            </div>
+        }
+    </div>
+</div>

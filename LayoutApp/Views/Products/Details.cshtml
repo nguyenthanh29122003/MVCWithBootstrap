@@ -1,0 +1,22 @@
+﻿@model LayoutApp.Models.Product
+@* Strongly typed view : Chỉ định rõ model mà k cần dùng ViewBag*@
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <th>Name</th>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <th>Price</th>
+        <td>@Model.Price</td>
+    </tr>
+</table>

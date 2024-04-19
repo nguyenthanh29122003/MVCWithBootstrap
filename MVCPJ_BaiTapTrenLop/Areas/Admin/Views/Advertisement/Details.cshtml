@@ -1,0 +1,32 @@
+﻿@model MVCPJ_BaiTapTrenLop.Models.Advertisement
+
+@{
+    ViewBag.Title = "Chi tiết quảng cáo";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Chi tiết quảng cáo</h2>
+
+<table class="table">
+    <tr>
+        <th>Tiêu đề:</th>
+        <td>@Model.Title</td>
+    </tr>
+    <tr>
+        <th>Mô tả:</th>
+        <td>@Model.Description</td>
+    </tr>
+    <tr>
+        <th>Hình ảnh:</th>
+        <td><img src="@Model.ImageURL" style="width: 400px" /></td>
+    </tr>
+    <tr>
+        <th>URL:</th>
+        <td>@Model.URL"</td>
+    </tr>
+</table>
+<div>
+    <a href="/Admin/Advertisement/Index" class="btn btn-success mx-3">
+        Quay lại
+    </a>
+</div>

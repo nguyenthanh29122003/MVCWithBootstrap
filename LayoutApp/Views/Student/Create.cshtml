@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create new students</h2>
+<form action="/student/create" method="post">
+    <div class="mb-3">
+        <label class="form-label">Id: </label>
+        <input type="text" class="form-control" id="id" placeholder="Mã học sinh" name="id" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Name: </label>
+        <input type="text" class="form-control" id="name" placeholder="Tên học sinh" name="name" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Address Line: </label>
+        <input type="text" class="form-control" id="addLine" placeholder="Địa chỉ" name="addLine" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">City: </label>
+        <input type="text" class="form-control" id="city" placeholder="Địa chỉ" name="city" />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+

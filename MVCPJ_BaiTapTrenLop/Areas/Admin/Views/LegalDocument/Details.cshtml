@@ -1,0 +1,29 @@
+﻿@model MVCPJ_BaiTapTrenLop.Models.LegalDocument
+
+@{
+    ViewBag.Title = "Chi tiết văn bản pháp lý";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Chi tiết văn bản pháp lý</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <dl class="dl-horizontal">
+            <dt>Số hiệu:</dt>
+            <dd>@Html.DisplayFor(model => model.SerialNumber)</dd>
+            <dt>Tiêu đề:</dt>
+            <dd>@Html.DisplayFor(model => model.Title)</dd>
+            <dt>Nội dung:</dt>
+            <dd>@Html.Raw(Model.Content)</dd>
+            <dt>Ngày tạo:</dt>
+            <dd>@Html.DisplayFor(model => model.CreatedDate)</dd>
+            <dt>Đường dẫn tệp:</dt>
+            <dd>@Html.DisplayFor(model => model.FilePath)</dd>
+        </dl>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-secondary" })
+</div>

@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "GetEmpDetails";
+}
+@{ 
+    string gender;
+    if (ViewBag.Gender == 'M')
+    {
+        gender = "Male";
+    }
+    else
+    {
+        gender = "Female";
+    }
+
+}
+<div class="container-fluid">
+
+    <h2>GetEmpDetails</h2>
+    <table class="table w-25 m-auto">
+        <tr>
+            <td>Emp Id</td>
+            <td>@ViewBag.Id</td>
+        </tr>
+        <tr>
+            <td>Emp Name</td>
+            <td>@ViewBag.Name</td>
+        </tr>
+        <tr>
+            <td>Emp Salary</td>
+            <td>@ViewBag.Salary</td>
+        </tr>
+        <tr>
+            <td>Emp Gender</td>
+            <td>@gender</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                @{ 
+                    if (ViewBag.Salary > 2000)
+                    {
+                        <span class="text-success">Good work.</span>
+                    }
+                    else
+                    {
+                        <span class="text-danger">You have to work harder.</span>
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>Years</td>
+            <td>
+                <ul>
+                    @{ 
+                        for (int i = ViewBag.Year; i <= DateTime.Now.Year; i++)
+                        {
+                            <li>@i</li>
+                        }
+                    }
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Positions</td>
+            <td>
+                <ul>
+                    @{ 
+                        foreach (var item in ViewBag.Positions)
+                        {
+                            <li>@item</li>
+                        }
+                    }
+                </ul>
+            </td>
+        </tr>
+    </table>
+
+</div>
+

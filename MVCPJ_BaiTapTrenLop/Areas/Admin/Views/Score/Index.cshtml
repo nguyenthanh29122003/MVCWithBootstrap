@@ -1,0 +1,32 @@
+﻿@model IEnumerable<MVCPJ_BaiTapTrenLop.Models.Score>
+
+@{
+    ViewBag.Title = "Quản lý điểm";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Danh sách điểm</h2>
+
+<a href="/Admin/Score/Create" class="btn btn-primary">Tạo mới điểm</a>
+
+<table class="table">
+    <tr>
+        <th>Môn học</th>
+        <th>Lớp học</th>
+        <th>Ảnh điểm</th>
+        <th>Thao tác</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.SubjectName</td>
+            <td>@item.ClassName</td>
+            <td><img src="@item.ScoreImage" style="width: 200px"/> </td>
+            <td>
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.ScoreID }) |
+                @Html.ActionLink("Sửa", "Edit", new { id = item.ScoreID }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.ScoreID })
+            </td>
+        </tr>
+    }
+</table>

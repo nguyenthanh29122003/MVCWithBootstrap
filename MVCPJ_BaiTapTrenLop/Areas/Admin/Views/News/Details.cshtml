@@ -1,0 +1,42 @@
+﻿@model MVCPJ_BaiTapTrenLop.Models.News
+
+@{
+    ViewBag.Title = "Chi tiết tin tức";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Chi tiết tin tức</h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th style="width: 150px;">Tiêu đề:</th>
+                            <td>@Html.DisplayFor(model => model.Title)</td>
+                        </tr>
+                        <tr>
+                            <th>Nội dung:</th>
+                            <td>@Html.Raw(Model.Content)</td>
+                        </tr>
+                        <tr>
+                            <th>Ngày xuất bản:</th>
+                            <td>@Html.DisplayFor(model => model.PublishDate)</td>
+                        </tr>
+                        <tr>
+                            <th>Danh mục:</th>
+                            <td>@Html.DisplayFor(model => model.CategoryName)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+
+<a href="/Admin/News/Index" class="btn btn-secondary mt-3">Quay lại</a>

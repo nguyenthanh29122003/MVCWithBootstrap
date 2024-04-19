@@ -1,0 +1,32 @@
+﻿@model List<MVCPJ_BaiTapTrenLop.Models.Subject>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3>Danh sách học phần</h3>
+        <table class="table table-hover">
+            <tr>
+                <th>Tên môn học</th>
+                <th>Mô tả</th>
+                <th>Giá</th>
+                <th>Thao tác</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.SubjectName</td>
+                    <td>@item.Description</td>
+                    <td>@item.Price</td>
+                    <td>
+                        <a class="btn btn-success" href="#">Đăng ký học</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

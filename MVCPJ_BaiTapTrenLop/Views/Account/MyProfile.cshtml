@@ -1,0 +1,48 @@
+﻿@model MVCPJ_BaiTapTrenLop.Models.User
+
+@{
+    ViewBag.Title = "My Profile";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<h2>My Profile</h2>
+
+<table class="table">
+    
+    <tr>
+        <th>Ảnh đại diện</th>
+        <td >
+            <img src="@Model.Avatar" style="width: 100px"/>
+        </td>
+    </tr>
+    <tr>
+        <th>Họ và tên</th>
+        <td>@Html.DisplayFor(model => model.FullName)</td>
+    </tr>
+    <tr>
+        <th>Ngày sinh</th>
+        <td>@Model.DateOfBirth.Value.ToString("dd/MM/yyyy")</td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td>@Html.DisplayFor(model => model.Email)</td>
+    </tr>
+    <tr>
+        <th>Số điện thoại</th>
+        <td>@Html.DisplayFor(model => model.PhoneNumber)</td>
+    </tr>
+    <tr>
+        <th>Địa chỉ</th>
+        <td>@Html.DisplayFor(model => model.Address)</td>
+    </tr>
+    <tr>
+        <th>Vai trò</th>
+        <td>@Html.DisplayFor(model => model.RoleName)</td>
+    </tr>
+</table>
+
+<p>
+    <a href="/Account/EditProfile" class="btn btn-primary">Chỉnh sửa</a>
+    <a href="/Home/" class="btn btn-secondary">Trở lại</a>
+    @*<a href="/Account/MyProfile" class="btn btn-secondary">Trở lại</a>*@
+</p>

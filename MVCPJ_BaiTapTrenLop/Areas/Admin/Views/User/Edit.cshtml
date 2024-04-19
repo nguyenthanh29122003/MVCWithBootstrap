@@ -1,0 +1,80 @@
+﻿@model MVCPJ_BaiTapTrenLop.Models.User
+
+@{
+    ViewBag.Title = "Chỉnh sửa người dùng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2 class="text-center mb-4">Chỉnh sửa người dùng</h2>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        @using (Html.BeginForm("Edit", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.HiddenFor(model => model.ID)
+            <input type="hidden" name="Avatar" value="@Model.Avatar" />
+            <input type="hidden" name="UserName" value="@Model.Username" />
+            <div class="row">
+                <div class="form-group mt-3 col-lg-5">
+                    @Html.LabelFor(model => model.Username)
+                    @Html.TextBoxFor(model => model.Username, new { @class = "form-control", disabled = "disabled" })
+                </div>
+
+                <div class="form-group mt-3 col-lg-5">
+                    @Html.LabelFor(model => model.Password)
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group mt-3 col-lg-5">
+                    @Html.LabelFor(model => model.FullName)
+                    @Html.TextBoxFor(model => model.FullName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group mt-3 col-lg-5">
+                    @Html.LabelFor(model => model.Email)
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group mt-3 col-lg-5">
+                    @Html.LabelFor(model => model.PhoneNumber)
+                    @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group mt-3 col-lg-5">
+                    @Html.LabelFor(model => model.DateOfBirth)
+                    <input type="date" name="DateOfBirth" value="@Model.DateOfBirth.Value.ToString("yyyy-MM-dd")" class="form-control" />
+                    @*@Html.TextBoxFor(model => model.DateOfBirth, new { @class = "form-control", type = "date" })*@
+                    @*@Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })*@
+                </div>
+
+
+                <div class="form-group mt-3 col-lg-10">
+                    @Html.LabelFor(model => model.Address)
+                    @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group mt-3 col-lg-5">
+                    @Html.LabelFor(model => model.RoleId)
+                    @Html.DropDownListFor(model => model.RoleId, (IEnumerable<SelectListItem>)ViewBag.Roles, "Chọn vai trò", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group mt-3 col-lg-5 mt-3">
+                    <label for="file">Ảnh đại diện</label>
+                    <input type="file" name="file" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group mt-3 col-lg-10 text-center mt-4">
+                <input type="submit" value="Lưu" class="btn btn-success" />
+                @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-secondary ml-2" })
+            </div>
+        }
+    </div>
+</div>

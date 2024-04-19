@@ -1,0 +1,33 @@
+﻿@model MVCPJ_BaiTapTrenLop.Models.Teacher
+
+@{
+    ViewBag.Title = "Xóa giáo viên";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2 class="text-center mb-4">Xóa giáo viên</h2>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <form method="post">
+            @Html.AntiForgeryToken()
+
+            <!-- Hidden field for TeacherID -->
+            @Html.HiddenFor(model => model.TeacherID)
+
+            <div class="alert alert-danger">
+                <strong>Bạn có chắc chắn muốn xóa giáo viên này?</strong>
+            </div>
+
+            <div class="form-group">
+                <label>Tên giáo viên:</label>
+                @Html.DisplayFor(model => model.FullName)
+            </div>
+
+            <div class="form-group text-center mt-4">
+                <input type="submit" value="Xác nhận xóa" class="btn btn-danger" />
+                @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-secondary ml-2" })
+            </div>
+        </form>
+    </div>
+</div>

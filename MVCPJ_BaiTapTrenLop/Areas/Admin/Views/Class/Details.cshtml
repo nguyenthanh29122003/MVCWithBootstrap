@@ -1,0 +1,21 @@
+﻿@model MVCPJ_BaiTapTrenLop.Models.Class
+
+@{
+    ViewBag.Title = "Chi tiết lớp học";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Chi tiết lớp học</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <dl class="dl-horizontal">
+            <dt>Tên lớp:</dt>
+            <dd>@Html.DisplayFor(model => model.ClassName)</dd>
+        </dl>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Quay lại", "Index")
+</div>

@@ -1,0 +1,35 @@
+﻿@model MVCPJ_BaiTapTrenLop.Models.User
+
+@{
+    ViewBag.Title = "Chi tiết người dùng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2 class="text-center mb-4">Chi tiết người dùng</h2>
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+
+        <div class="col-md-6 offset-md-3 text-center">
+            <img src="@Url.Content(Model.Avatar)" alt="Avatar" class="img-thumbnail" style="max-width: 200px;" />
+        </div>
+        <dl class="dl-horizontal">
+            <dt>Tên đầy đủ:</dt>
+            <dd>@Html.DisplayFor(model => model.FullName)</dd>
+            <dt>Email:</dt>
+            <dd>@Html.DisplayFor(model => model.Email)</dd>
+            <dt>Số điện thoại:</dt>
+            <dd>@Html.DisplayFor(model => model.PhoneNumber)</dd>
+            <dt>Địa chỉ:</dt>
+            <dd>@Html.DisplayFor(model => model.Address)</dd>
+            <dt>Ngày sinh:</dt>
+            <dd>@Model.DateOfBirth.Value.ToString("dd/MM/yyyy")</dd>
+            <dt>Vai trò:</dt>
+            <dd>@Html.DisplayFor(model => model.RoleName)</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="text-center mt-4">
+    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-primary" })
+</div>

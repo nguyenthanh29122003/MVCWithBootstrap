@@ -1,0 +1,79 @@
+﻿@model EF_CodeFirst.Models.Product
+@using EF_CodeFirst.CustomHTMLHeplers;
+@{
+    ViewBag.Title = "Create a product";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Create a product</h2>
+
+@using (Html.BeginForm("Create", "Products", new { area = "Admin"}, FormMethod.Post, new { enctype = "muiltipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-md-6">
+            @Html.LabelFor(row => row.ProductName, "Product name: ")
+            @Html.TextBoxFor(row => row.ProductName, new { @class = "form-control", placeholder = "Product name" })
+            @Html.ValidationMessageFor(row => row.ProductName)
+        </div>
+        @*@Html.InputHelp("col-md-6", "Price", "Price")*@
+        <div class="col-md-6">
+            @Html.LabelFor(row => row.Price, "Product price: ")
+            @Html.TextBoxFor(row => row.Price, new { @class = "form-control", placeholder = "Product price" })
+            @Html.ValidationMessageFor(row => row.Price)
+        </div>
+        @*<div class="col-md-6">
+            <label for="Price">Product price: </label>
+            <input type="number" class="form-control" id="Price" name="Price" placeholder="Product price" />
+        </div>*@
+
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="dateOfPurchase">Date of purchase: </label>
+            <input type="date" class="form-control" id="dateOfPurchase" name="dateOfPurchase" placeholder="Date Of Purchase" />
+        </div>
+        <div class="col-md-6">
+            @Html.LabelFor(row => row.AvailabilityStatus, "Availability Status: ")
+            @Html.DropDownListFor(row => row.AvailabilityStatus, new List<SelectListItem>
+           {
+                new SelectListItem() {Text = "In Stock", Value = "InStock"},
+                new SelectListItem() {Text = "Out Of Stock", Value = "OutOfStock"}
+           }, "Please Select...", new {@class = "form-control"})
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            @Html.LabelFor(row => row.CategoryID, "Category: ")
+            @Html.DropDownListFor(row => row.CategoryID, new SelectList(ViewBag.Categories, "CategoryID", "CategoryName"), "Please Select...", new {@class = "form-control"} )
+            @Html.ValidationMessageFor(row => row.CategoryID)
+        </div>
+
+        <div class="col-md-6">
+            @Html.LabelFor(row => row.BrandID, "Brand: ")
+            @Html.DropDownListFor(row => row.BrandID, new SelectList(ViewBag.Brands, "BrandID", "BrandName"), "Please Select...", new { @class = "form-control" })
+            @Html.ValidationMessageFor(row => row.BrandID)
+        </div>
+
+        @*<div class="col-md-6">
+            <label for="brandId">Brand: </label>
+            <select class="form-control" id="brandId" name="brandId">
+                <option value="">Please select...</option>
+                @{
+                    foreach (EF_CodeFirst.Models.Brand item in ViewBag.Brands)
+                    {
+                        <option value="@item.BrandID">@item.BrandName</option>
+                    }
+                }
+            </select>
+        </div>*@
+    </div>
+    <div class="row">
+        <div class="mx-3 form-check">
+            <input type="checkbox" class="form-check-input" id="active" name="active" value="true" />
+            <label for="categoryId" class="form-check-label">Active</label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Create</button>
+    <a href="/admin/products/index" class="btn btn-danger">Cancel</a>
+    @Html.ValidationSummary()
+}

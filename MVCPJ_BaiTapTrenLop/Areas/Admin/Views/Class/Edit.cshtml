@@ -1,0 +1,25 @@
+﻿@model MVCPJ_BaiTapTrenLop.Models.Class
+
+@{
+    ViewBag.Title = "Chỉnh sửa lớp học";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Chỉnh sửa lớp học</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <input type="hidden" name="ClassID" value="@Model.ClassID"/>
+        @Html.LabelFor(model => model.ClassName)
+        @Html.EditorFor(model => model.ClassName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.ClassName, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group mt-3">
+        <input type="submit" value="Lưu" class="btn btn-primary" />
+        @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-secondary" })
+    </div>
+}

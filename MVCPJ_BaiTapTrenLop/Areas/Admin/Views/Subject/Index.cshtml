@@ -1,0 +1,33 @@
+﻿@model IEnumerable<MVCPJ_BaiTapTrenLop.Models.Subject>
+
+@{
+    ViewBag.Title = "Quản lý môn học";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Danh sách môn học</h2>
+
+<a href="/Admin/Subject/Create" class="btn btn-primary">Tạo mới môn học</a>
+
+<table class="table">
+    <tr>
+        <th>Tên môn học</th>
+        <th>Mô tả</th>
+        <th>Giá</th>
+        <th>Thao tác</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.SubjectName</td>
+            <td>@item.Description</td>
+            <td>@item.Price</td>
+            <td>
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.SubjectID }) |
+                @Html.ActionLink("Sửa", "Edit", new { id = item.SubjectID }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.SubjectID })
+            </td>
+        </tr>
+    }
+</table>
+

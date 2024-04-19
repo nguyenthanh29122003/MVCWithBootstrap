@@ -1,0 +1,35 @@
+﻿@model MVCPJ_BaiTapTrenLop.Models.Score
+
+@{
+    ViewBag.Title = "Tạo mới điểm";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Tạo mới điểm</h2>
+
+@using (Html.BeginForm("Create", "Score", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SubjectID)
+        @Html.DropDownListFor(model => model.SubjectID, (SelectList)ViewBag.Subjects, "Chọn môn học", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.SubjectID, "", new {@class = "text-danger"})
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ClassID)
+        @Html.DropDownListFor(model => model.ClassID, (SelectList)ViewBag.Classes, "Chọn lớp học", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ClassID, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group mt-3">
+        <input name="file" type="file" class="form-control" placeholder="Chọn ảnh điểm." />
+        <input name="ScoreImage" type="hidden" value="/" />
+    </div>
+
+    <div class="form-group mt-3">
+        <input type="submit" value="Tạo mới" class="btn btn-primary" />
+        @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-secondary" })
+    </div>
+}

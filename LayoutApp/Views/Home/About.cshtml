@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "About";
+    ViewBag.Message = "My name is Thanh";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+@section SideBar{
+    <a href="#" class="list-group-item text-white"
+       style="background-color: transparent">About companies</a>
+    <a href="#" class="list-group-item text-white"
+       style="background-color: transparent">About founders</a>
+    <a href="#" class="list-group-item text-white"
+       style="background-color: transparent">About Teams</a>
+}
+
+<h2>Trang giới thiệu</h2>
+
+@{ 
+    ViewBag.ListTitle = "Products";
+    ViewBag.Item = new List<string> { "Thanh", "Xuan", "Nguyen" };
+    Html.RenderPartial("ListParView");
+}

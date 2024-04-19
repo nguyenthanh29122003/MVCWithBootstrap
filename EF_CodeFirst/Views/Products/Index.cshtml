@@ -1,0 +1,15 @@
+﻿@model List<EF_CodeFirst.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<h2>Danh sách sản phẩm</h2>
+
+<div class="row row-cols-1 row-cols-md-5 g-4">
+    @foreach (var item in Model)
+    {
+        Html.RenderAction("DisplaySingleProduct", "Products", new { p = item });
+    }
+</div>

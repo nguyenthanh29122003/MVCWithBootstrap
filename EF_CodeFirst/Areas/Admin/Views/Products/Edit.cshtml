@@ -1,0 +1,95 @@
+﻿@model EF_CodeFirst.Models.Product
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Edit products</h2>
+
+<form action="/Admin/products/edit/@Model.ProductID" method="post">
+    <input type="hidden" value="@Model.ProductID" id="ProductId" name="ProductId" />
+    <div class="row">
+        <div class="col-md-6">
+            <label for="productName">Product name: </label>
+            <input type="text" class="form-control" id="productName" name="productName" placeholder="Product name" value="@Model.ProductName" />
+        </div>
+        <div class="col-md-6">
+            <label for="Price">Product price: </label>
+            <input type="number" class="form-control" id="Price" name="Price" placeholder="Product price" value="@Model.Price" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="DateOfPurchase">Date of purchase: </label>
+            <input type="date" class="form-control" id="DateOfPurchase" name="DateOfPurchase" placeholder="Date Of Purchase" value="@Model.DateOfPurchase.Value.ToString("yyyy-MM-dd")" />
+        </div>
+        <div class="col-md-6">
+            <label for="availabilityStatus">Availability Status: </label>
+            @*<input type="text" class="form-control" id="availabilityStatus" name="availabilityStatus" placeholder="Availability Status" value="@Model.AvailabilityStatus"/>*@
+            <select class="form-control" id="availabilityStatus" name="availabilityStatus">
+                @{
+                    if (Model.AvailabilityStatus == "InStock")
+                    {
+                        <option value="InStock" selected>In Stock</option>
+                        <option value="OutOfStock">Out Of Stock</option>
+                    }
+                    else
+                    {
+                        <option value="InStock">In Stock</option>
+                        <option value="OutOfStock" selected>Out Of Stock</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="categoryId">Category: </label>
+            @*<input type="number" class="form-control" id="categoryId" name="categoryId" placeholder="Category Id" value="@Model.CategoryID"/>*@
+            <select class="form-control" id="categoryId" name="categoryId">
+                @{
+                    foreach (EF_CodeFirst.Models.Category item in ViewBag.Categories)
+                    {
+                        if (item.CategoryID == Model.CategoryID)
+                        {
+                            <option value="@item.CategoryID" selected>@item.CategoryName</option>
+                        }
+                        else
+                        {
+                            <option value="@item.CategoryID">@item.CategoryName</option>
+                        }
+                    }
+                }
+            </select>
+
+        </div>
+        <div class="col-md-6">
+            <label for="brandId">Brand: </label>
+            @*<input type="number" class="form-control" id="brandId" name="brandId" placeholder="Brand Id" value="@Model.BrandID"/>*@
+            <select class="form-control" id="brandId" name="brandId">
+                @{
+                    foreach (EF_CodeFirst.Models.Brand item in ViewBag.Brands)
+                    {
+                        if (item.BrandID == Model.BrandID)
+                        {
+                            <option value="@item.BrandID" selected>@item.BrandName</option>
+                        }
+                        else
+                        {
+                            <option value="@item.BrandID">@item.BrandName</option>
+                        }
+                    }
+                }
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mx-3 form-check">
+            <input type="checkbox" class="form-check-input" id="active" name="active" value="true" checked="@Model.Active" />
+            <label for="categoryId" class="form-check-label">Active: </label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+    <a href="/admin/products/index" class="btn btn-danger">Cancel</a>
+</form>

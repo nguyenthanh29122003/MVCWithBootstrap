@@ -1,0 +1,52 @@
+﻿@model EF_CodeFirst.Models.Product
+
+@{
+    ViewBag.Title = "Product Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Details</h2>
+
+<table class="table">
+    <tr>
+        <th>Product ID</th>
+        <td>@Model.ProductID</td>
+    </tr>
+    <tr>
+        <th>Product Name</th>
+        <td>@Model.ProductName</td>
+    </tr>
+    <tr>
+        <th>Price</th>
+        <td>@Model.Price.Value.ToString("C")</td>
+    </tr>
+    <tr>
+        <th>Date Of Purchase</th>
+        <td>@Model.DateOfPurchase.Value.ToString("dd/MM/yyyy")</td>
+    </tr>
+    <tr>
+        <th>Availability Status</th>
+        <td>@Model.AvailabilityStatus</td>
+    </tr>
+    <tr>
+        <th>CategoryID</th>
+        <td>@Model.Category.CategoryID</td>
+    </tr>
+    <tr>
+        <th>Category Name</th>
+        <td>@Model.Category.CategoryName</td>
+    </tr>
+    <tr>
+        <th>BrandID</th>
+        <td>@Model.Brand.BrandID</td>
+    </tr>
+    <tr>
+        <th>Brand Name</th>
+        <td>@Model.Brand.BrandName</td>
+    </tr>
+    <tr>
+        <th>Active</th>
+        <td>@Model.Active</td>
+    </tr>
+</table>
+<a href="@Url.Action("Index", "Products")">Back to List Of Products</a>

@@ -1,0 +1,31 @@
+﻿@model List<EF_CodeFirst.Identity.AppUser>
+
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Danh sách người dùng</h2>
+<table class="table table-hover table-bordered">
+    <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Phone number</th>
+        <th>Date of birth</th>
+        <th>Address</th>
+        <th>City</th>
+    </tr>
+    @{
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.UserName</td>
+                <td>@item.Email</td>
+                <td>@item.PhoneNumber</td>
+                <td>@item.DateOfBirth</td>
+                <td>@item.Address</td>
+                <td>@item.City</td>
+            </tr>
+        }
+    }
+</table>

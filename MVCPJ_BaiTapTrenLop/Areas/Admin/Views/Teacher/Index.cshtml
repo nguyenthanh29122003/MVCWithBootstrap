@@ -1,0 +1,69 @@
+﻿@model IEnumerable<MVCPJ_BaiTapTrenLop.Models.Teacher>
+
+@{
+    ViewBag.Title = "Quản lý giáo viên";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2 class="text-center mb-4">Danh sách giáo viên</h2>
+
+<a href="@Url.Action("Create")" class="btn btn-success mb-3">Thêm giáo viên mới</a>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Tên đầy đủ</th>
+                <th>Email</th>
+                <th>Số điện thoại</th>
+                <th>Địa chỉ</th>
+                <th>Ngày sinh</th>
+                <th>Giới tính</th>
+                <th>Phòng ban</th>
+                <th>Ảnh</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var teacher in Model)
+            {
+                <tr>
+                    <td>@teacher.FullName</td>
+                    <td>@teacher.Email</td>
+                    <td>@teacher.PhoneNumber</td>
+                    <td>@teacher.Address</td>
+                    <td>@teacher.DateOfBirth.ToString("dd/MM/yyyy")</td>
+                    <td>@teacher.Gender</td>
+                    <td>@teacher.Department</td>
+                    <td><img src="@Url.Content(teacher.ImagePath)" alt="Avatar" class="img-thumbnail" style="max-width: 50px;" /></td>
+                    <td>
+                        <div class="btn-group">
+                            @Html.ActionLink("Chi tiết", "Details", new { id = teacher.TeacherID }, new { @class = "btn btn-info btn-sm" })
+                            @Html.ActionLink("Chỉnh sửa", "Edit", new { id = teacher.TeacherID }, new { @class = "btn btn-warning btn-sm" })
+                            @Html.ActionLink("Xóa", "Delete", new { id = teacher.TeacherID }, new { @class = "btn btn-danger btn-sm"})
+                            @*@Html.ActionLink("Xóa", "Delete", new { id = teacher.TeacherID }, new { @class = "btn btn-danger btn-sm", onclick = "return confirm('Bạn có chắc chắn muốn xóa giáo viên này?');" })*@
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="text-center">
+    @if (ViewBag.TotalRecords > ViewBag.PageSize)
+    {
+        int totalPages = (int)Math.Ceiling((double)ViewBag.TotalRecords / ViewBag.PageSize);
+        for (int i = 1; i <= totalPages; i++)
+        {
+            if (i == ViewBag.CurrentPage)
+            {
+                <strong>@i</strong>
+            }
+            else
+            {
+                @Html.ActionLink(i.ToString(), "Index", new { page = i }, new { @class = "btn btn-outline-secondary btn-sm mx-1" })
+            }
+        }
+    }
+</div>

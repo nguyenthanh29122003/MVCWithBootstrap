@@ -1,0 +1,30 @@
+﻿@model MVCPJ_BaiTapTrenLop.Models.Class
+
+@{
+    ViewBag.Title = "Xóa lớp học";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Xóa lớp học</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <dl class="dl-horizontal">
+            <input type="hidden" name="ClassID" value="@Model.ClassID" />
+            <dt>Tên lớp:</dt>
+            <dd>@Html.DisplayFor(model => model.ClassName)</dd>
+        </dl>
+    </div>
+</div>
+
+<p>Bạn có chắc chắn muốn xóa lớp học này?</p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <input type="submit" value="Xác nhận xóa" class="btn btn-danger" />
+        @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-default" })
+    </div>
+}

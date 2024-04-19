@@ -1,0 +1,53 @@
+﻿@model MVCPJ_BaiTapTrenLop.Models.News
+
+@{
+    ViewBag.Title = "Tạo tin tức mới";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Tạo tin tức mới</h2>
+
+@using (Html.BeginForm("Create", "News", new {area = "Admin"}, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TitleImage, htmlAttributes: new { @class = "control-label" })
+        @*@Html.EditorFor(model => model.TitleImage, new { htmlAttributes = new { @class = "form-control", type="file"} })*@
+        <input type="hidden" value="/" name="TitleImage"/>
+        <input type="file" name="file" class="form-control"/>
+        @Html.ValidationMessageFor(model => model.TitleImage, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label" })
+        @Html.TextAreaFor(model => model.Content, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+    </div>
+
+    <input name="PublishDate" value="@DateTime.Now" type="hidden"/>
+    @*<div class="form-group">
+        @Html.LabelFor(model => model.PublishDate, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.PublishDate, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.PublishDate, "", new { @class = "text-danger" })
+    </div>*@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryID, htmlAttributes: new { @class = "control-label" })
+        @Html.DropDownListFor(model => model.CategoryID, ViewBag.CategoryList as SelectList, "-- Chọn danh mục --", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group mt-3 ">
+        <input type="submit" value="Tạo" class="btn btn-success" />
+        <a href="@Url.Action("Index", "News")" class="btn btn-secondary mx-3">
+            Hủy bỏ
+        </a>
+    </div>
+}

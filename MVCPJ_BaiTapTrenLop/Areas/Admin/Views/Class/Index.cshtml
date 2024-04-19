@@ -1,0 +1,28 @@
+﻿@model IEnumerable<MVCPJ_BaiTapTrenLop.Models.Class>
+
+@{
+    ViewBag.Title = "Quản lý lớp học";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Danh sách lớp học</h2>
+
+<a href="/Admin/Class/Create" class="btn btn-primary">Tạo mới lớp học</a>
+
+<table class="table">
+    <tr>
+        <th>Tên lớp</th>
+        <th>Thao tác</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ClassName</td>
+            <td>
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.ClassID }) |
+                @Html.ActionLink("Sửa", "Edit", new { id = item.ClassID }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.ClassID })
+            </td>
+        </tr>
+    }
+</table>

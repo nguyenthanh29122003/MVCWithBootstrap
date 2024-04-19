@@ -1,0 +1,36 @@
+﻿@model LayoutApp.Models.Product
+@{
+    ViewBag.Title = "Create";
+}
+
+@{
+    if (Model == null)
+    {
+        <h2>Create new products</h2>
+        <form action="/products/create" method="post">
+            <div class="mb-3">
+                <label class="form-label">Id: </label>
+                <input type="text" class="form-control" id="id" placeholder="Mã sản phẩm" name="id" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Name: </label>
+                <input type="text" class="form-control" id="name" placeholder="Tên sản phẩm" name="name" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Price: </label>
+                <input type="text" class="form-control" id="price" placeholder="Giá sản phẩm" name="price" />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    }
+    else
+    {
+        <h2>New products</h2>
+        <ul>
+            <li>Id: @Model.Id</li>
+            <li>Name: @Model.Name</li>
+            <li>Price: @Model.Price</li>
+        </ul>
+    }
+}
+

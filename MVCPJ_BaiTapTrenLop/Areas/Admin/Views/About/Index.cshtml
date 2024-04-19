@@ -1,0 +1,19 @@
+﻿@model MVCPJ_BaiTapTrenLop.Models.About
+
+@{
+    ViewBag.Title = "Quản lý giới thiệu";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2 class="text-center">Quản lý giới thiệu</h2>
+
+<form action="/Admin/About/Index" method="post">
+    <input type="hidden" value="@Model.ID" name="ID"/>
+    <label for="Title" class="form-label">Tiêu đề: </label>
+    <input id="Title" name="Title" class="form-control" type="text" placeholder="Tiêu đề..." value="@Model.Title"/>
+     
+    <label for="Content" class="form-label">Nội dung: </label>
+    <textarea name="Content" id="editor" class="form-control" placeholder="Nội dung..." >@Model.Content</textarea>
+
+    <button type="submit" class="btn btn-success mt-3 float-end">Cập nhật</button>
+</form>

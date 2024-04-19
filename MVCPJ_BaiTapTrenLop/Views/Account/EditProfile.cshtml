@@ -1,0 +1,54 @@
+﻿@model MVCPJ_BaiTapTrenLop.Models.User
+
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<h2>EditProfile</h2>
+
+<form action="/Account/EditProfile" method="post" enctype="multipart/form-data">
+    <input name="ID" type="hidden" class="form-control" value="@Model.ID" />
+    <input name="Username" type="hidden" class="form-control" value="@Model.Username" />
+    <input name="Password" type="hidden" class="form-control" value="@Model.Password" />
+    <input name="Avatar" type="hidden" class="form-control" value="@Model.Avatar" />
+    <input name="RoleID" type="hidden" class="form-control" value="@Model.RoleId" />
+    <input name="RoleName" type="hidden" class="form-control" value="@Model.RoleName" />
+
+    <table class="table">
+
+        <tr class="form-group">
+            <th>Ảnh hiện tại:</th>
+            <td><img src="@Url.Content(Model.Avatar)" alt="Avatar" class="img-thumbnail" style="max-width: 100px;" /></td>
+        </tr>
+
+        <tr>
+            <th>Ảnh đại diện</th>
+            <td>
+                <input name="file" type="file" class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <th>Họ và tên</th>
+            <td><input name="FullName" class="form-control" type="text" value="@Html.DisplayFor(model => model.FullName)" /> </td>
+        </tr>
+        <tr>
+            <th>Ngày sinh</th>
+            <td><input name="DateOfBirth" type="date" class="form-control" value="@Model.DateOfBirth.Value.ToString("yyyy-MM-dd")" /></td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td><input name="Email" type="text" class="form-control" value="@Model.Email" /> </td>
+        </tr>
+        <tr>
+            <th>Số điện thoại</th>
+            <td><input name="PhoneNumber" type="number" class="form-control" value="@Html.DisplayFor(model => model.PhoneNumber)" /> </td>
+        </tr>
+        <tr>
+            <th>Địa chỉ</th>
+            <td><input name="Address" type="text" class="form-control" value="@Html.DisplayFor(model => model.Address)" /> </td>
+        </tr>
+    </table>
+    <button type="submit" class="btn btn-success">Cập nhật</button>
+    <a href="/Account/MyProfile" class="btn btn-secondary">Trở lại</a>
+</form>

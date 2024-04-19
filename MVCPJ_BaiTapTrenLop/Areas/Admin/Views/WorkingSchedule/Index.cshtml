@@ -1,0 +1,64 @@
+﻿@model IEnumerable<MVCPJ_BaiTapTrenLop.Models.WorkingSchedule>
+
+@{
+    ViewBag.Title = "Quản lý lịch công tác";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2 class="text-center mb-4">Danh sách lịch công tác</h2>
+
+<a href="@Url.Action("Create")" class="btn btn-success mb-3">Thêm lịch mới</a>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th style="max-width: 200px">Tiêu đề</th>
+                <th>Nội dung</th>
+                <th>Ngày tạo</th>
+                <th>Địa điểm</th>
+                <th>Người tham gia</th>
+                <th>Ghi chú</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="max-width: 200px">@item.Title</td>
+                    <td>@Html.Raw(item.Content)</td>
+                    <td>@item.CreatedDate.ToShortDateString()</td>
+                    <td>@item.Location</td>
+                    <td>@item.Participants</td>
+                    <td>@item.Note</td>
+                    <td>
+                        <div class="btn-group">
+                            @Html.ActionLink("Chi tiết", "Details", new { id = item.ScheduleID }, new { @class = "btn btn-info btn-sm" })
+                            @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.ScheduleID }, new { @class = "btn btn-warning btn-sm" })
+                            @Html.ActionLink("Xóa", "Delete", new { id = item.ScheduleID }, new { @class = "btn btn-danger btn-sm" })
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="text-center">
+    @if (ViewBag.TotalRecords > ViewBag.PageSize)
+    {
+        int totalPages = (int)Math.Ceiling((double)ViewBag.TotalRecords / ViewBag.PageSize);
+        for (int i = 1; i <= totalPages; i++)
+        {
+            if (i == ViewBag.CurrentPage)
+            {
+                <strong>@i</strong>
+            }
+            else
+            {
+                @Html.ActionLink(i.ToString(), "Index", new { page = i }, new { @class = "btn btn-outline-secondary btn-sm mx-1" })
+            }
+        }
+    }
+</div>

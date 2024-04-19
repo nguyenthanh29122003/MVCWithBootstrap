@@ -1,0 +1,358 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Include locally hosted TinyMCE CSS -->
+    <link href="~/Scripts/tinymce/skins/ui/oxide/skin.css" rel="stylesheet" />
+    <!-- Include locally hosted TinyMCE JavaScript -->
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'advlist autolink lists link image charmap print preview anchor',
+            toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+            skin: 'oxide',
+            content_css: 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'
+        });
+    </script>
+
+    <style>
+        /* Navbar styling */
+        .navbar {
+            background-color: #343a40; /* Dark grey */
+            transition: background-color 0.5s;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /*.navbar:hover {
+                background-color: #495057;
+            }*/
+
+        .navbar-brand {
+            font-weight: bold;
+            color: #fff; /* White */
+            transition: color 0.5s;
+        }
+
+            .navbar-brand:hover {
+                color: #ffc107;
+            }
+
+        .navbar-nav .nav-link {
+            color: #fff; /* White */
+            margin-right: 10px;
+            transition: color 0.5s;
+        }
+
+            .navbar-nav .nav-link:hover {
+                color: #ffc107;
+            }
+
+        /* Breadcrumb styling */
+        .breadcrumb {
+            background-color: #f8f9fa; /* Light grey */
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.5s;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .breadcrumb:hover {
+                background-color: #e9ecef;
+            }
+
+        /* Footer styling */
+        footer {
+            background-color: #343a40; /* Dark grey */
+            transition: background-color 0.5s;
+        }
+
+            /*footer:hover {
+                background-color: #495057;
+            }*/
+
+            footer h5 {
+                color: #fff; /* White */
+                margin-bottom: 20px;
+                transition: color 0.5s;
+            }
+
+                footer h5:hover {
+                    color: #ffc107;
+                }
+
+            footer .nav-link {
+                color: #fff; /* White */
+                transition: color 0.5s;
+            }
+
+                footer .nav-link:hover {
+                    color: #ffc107;
+                }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <a class="navbar-brand" href="/Home/Index" style="padding-left: 30px"><img src="~/Images/System/Logo.png" style="width: 50px"/></a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse text-center" id="nav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item m-1">
+                    <a class="nav-link" href="/Home/Index">Trang chủ</a>
+                </li>
+                <li class="nav-item m-1">
+                    <a class="nav-link" href="/News/Index">Tin tức</a>
+                </li>
+                <li class="nav-item m-1">
+                    <a class="nav-link" href="/Score/Index">Tra cứu điểm</a>
+                </li>
+                <li class="nav-item m-1">
+                    <a class="nav-link" href="/Subject/Index">Thông tin học phần</a>
+                </li>
+                @*<li class="nav-item m-1">
+                    <a class="nav-link" href="/WorkingSchedule/Index">Tra cứu lịch công tác</a>
+                </li>*@
+                <li class="nav-item m-1">
+                    <a class="nav-link" href="/Teacher/Index">Thông tin giảng viên</a>
+                </li>
+                <li class="nav-item m-1">
+                    <a class="nav-link" href="/Documents/Index">Văn bản pháp quy</a>
+                </li>
+                <li class="nav-item m-1">
+                    <a class="nav-link" href="/About/Index">Giới thiệu</a>
+                </li>
+
+                <li class="nav-item m-1 dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Tài khoản
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/Account/MyProfile">Thông tin cá nhân</a>
+                        <a class="dropdown-item" href="/Account/EditProfile">Chỉnh sửa thông tin</a>
+                        <a class="dropdown-item" href="/Admin/Home/Index">Quản trị</a>
+                        <a class="dropdown-item" href="/Account/Logout">Đăng xuất</a>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2">
+                <!-- Admin Sidebar -->
+                <div class="flex-shrink-0 p-3" style="width: 100%;">
+                    <a href="/Admin/Home/" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
+                        <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+                        <span class="fs-5 fw-semibold">QUẢN LÝ WEBSITE</span>
+                    </a>
+                    <ul class="list-unstyled ps-0">
+
+                        <li class="mb-1">
+                            <a href="/Admin/About/Index" class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed fs-5" aria-expanded="false">
+                                Giới thiệu
+                            </a>
+                        </li>
+
+                        <li class="mb-1">
+                            <a class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed fs-5" data-bs-toggle="collapse" data-bs-target="#news-collapse" aria-expanded="false">
+                                Tin tức
+                            </a>
+                            <div class="collapse ms-3" id="news-collapse" style="">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small fs-6">
+                                    <li><a href="/Admin/News/Index" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh sách tin tức</a></li>
+                                    <li><a href="/Admin/News/Create" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Thêm mới tin tức</a></li>
+                                    <li><a href="/Admin/NewsCategory/Index" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Nhóm tin</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="mb-1">
+                            <a class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed fs-5" data-bs-toggle="collapse" data-bs-target="#document-collapse" aria-expanded="false">
+                                Văn bản pháp quy
+                            </a>
+                            <div class="collapse ms-3" id="document-collapse" style="">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small fs-6">
+                                    <li><a href="/Admin/LegalDocument/Index" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh sách</a></li>
+                                    <li><a href="/Admin/LegalDocument/Create" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Thêm mới</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="mb-1">
+                            <a class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed fs-5" data-bs-toggle="collapse" data-bs-target="#scores-collapse" aria-expanded="false">
+                                Điểm
+                            </a>
+                            <div class="collapse ms-3" id="scores-collapse" style="">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small fs-6">
+                                    <li><a href="/Admin/Class/Index" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Lớp</a></li>
+                                    <li><a href="/Admin/Subject/Index" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Học phần</a></li>
+                                    <li><a href="/Admin/Score/Index" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Điểm</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="mb-1">
+                            <a class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed fs-5" data-bs-toggle="collapse" data-bs-target="#working_schedule-collapse" aria-expanded="false">
+                                Lịch công tác
+                            </a>
+                            <div class="collapse ms-3" id="working_schedule-collapse" style="">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small fs-6">
+                                    <li><a href="/Admin/WorkingSchedule/Index" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh sách</a></li>
+                                    <li><a href="/Admin/WorkingSchedule/Create" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Thêm mới</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="mb-1">
+                            <a class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed fs-5" data-bs-toggle="collapse" data-bs-target="#teacher-collapse" aria-expanded="false">
+                                Giáo viên
+                            </a>
+                            <div class="collapse ms-3" id="teacher-collapse" style="">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small fs-6">
+                                    <li><a href="/Admin/Teacher/Index" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh sách</a></li>
+                                    <li><a href="/Admin/Teacher/Create" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Thêm mới</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="mb-1">
+                            <a class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed fs-5" data-bs-toggle="collapse" data-bs-target="#advertisement-collapse" aria-expanded="false">
+                                Quảng cáo
+                            </a>
+                            <div class="collapse ms-3" id="advertisement-collapse" style="">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small fs-6">
+                                    <li><a href="/Admin/Advertisement/Index" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh sách</a></li>
+                                    <li><a href="/Admin/Advertisement/Create" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Thêm mới</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <ul class="list-unstyled ps-0 border-top">
+                        <li class="mb-1">
+                            <a class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed fs-5" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+                                Người dùng
+                            </a>
+                            <div class="collapse ms-3" id="account-collapse" style="">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small fs-6">
+                                    <li><a href="/Admin/User/Index" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh sách</a></li>
+                                    <li><a href="/Admin/User/Create" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Thêm mới</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Admin Sidebar -->
+                <!-- Your Admin Sidebar content here -->
+            </div>
+            <div class="col-lg-10 mt-2">
+                <!-- Breadcrumbs -->
+                @if (ViewBag.Breadcrumbs != null && ViewBag.Breadcrumbs.Count > 0)
+                {
+                    <ol class="breadcrumb p-3 bg-body-secondary rounded-3">
+                        @foreach (var item in ViewBag.Breadcrumbs)
+                        {
+                            <li class="breadcrumb-item ">
+                                @if (!string.IsNullOrEmpty(item.Url))
+                                {
+                                    <a class="link-body-emphasis fw-semibold text-decoration-none" href="@item.Url">@item.Text</a>
+                                }
+                                else
+                                {
+                                    @item.Text
+                                }
+                            </li>
+                        }
+                    </ol>
+                }
+
+                <!-- Main Content -->
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-5 mt-5">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5">
+                <div class="col mb-4">
+                    <a href="/" class="d-flex align-items-center mb-3 text-decoration-none">
+                        <h1 style="color: #343a40;"><img src="~/Images/System/Logo.png" style=" width:200px;"/></h1>
+                    </a>
+                    <p class="text-white">© 2024</p>
+                </div>
+
+                <div class="col"></div>
+
+                <div class="col">
+                    <h5>Liên kết</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Hướng nghiệp</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Sinh viên</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Thư viện</a></li>
+                    </ul>
+                </div>
+
+                <div class="col">
+                    <h5>Hỗ trợ</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Liên hệ</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link text-white">FAQs</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Chính sách</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Bản quyền</a></li>
+                    </ul>
+                </div>
+
+                <div class="col">
+                    <h5>Liên hệ</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Địa chỉ: Kim Chung - Hoài Đức - Hà Nội</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Email: aihocthanhdo@thanhdouni.edu.vn</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Điện thoại: +123456789</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Fax: +987654321</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function () {
+            // Smooth scrolling for navbar links
+            $("a").on('click', function (event) {
+                if (this.hash !== "") {
+                    event.preventDefault();
+
+                    let hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 800, function () {
+                        window.location.hash = hash;
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

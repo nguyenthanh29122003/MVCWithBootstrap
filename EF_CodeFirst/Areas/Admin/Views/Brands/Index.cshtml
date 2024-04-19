@@ -1,0 +1,21 @@
+﻿@model List<EF_CodeFirst.Models.Brand>
+@{
+    ViewBag.Title = "Brands";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Brands</h2>
+
+<table class="table table-hover">
+    <tr>
+        <th>Brand ID</th>
+        <th>Brand Name</th>
+    </tr>
+    @foreach (EF_CodeFirst.Models.Brand item in Model)
+    {
+        <tr>
+            <td>@item.BrandID</td>
+            <td>@item.BrandName</td>
+        </tr>
+    }
+</table>

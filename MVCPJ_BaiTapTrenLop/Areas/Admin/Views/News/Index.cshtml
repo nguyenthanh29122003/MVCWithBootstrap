@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MVCPJ_BaiTapTrenLop.Models.News>
+
+@{
+    ViewBag.Title = "Danh sách tin tức";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Danh sách tin tức</h2>
+
+<p>
+    @Html.ActionLink("Tạo tin tức mới", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tiêu đề</th>
+            <th>Ngày xuất bản</th>
+            <th>Danh mục</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var newsItem in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => newsItem.Title)</td>
+                <td>@Html.DisplayFor(modelItem => newsItem.PublishDate)</td>
+                <td>@Html.DisplayFor(modelItem => newsItem.CategoryName)</td>
+                <td>
+                    @Html.ActionLink("Chi tiết", "Details", new { id = newsItem.ID }) |
+                    @Html.ActionLink("Sửa", "Edit", new { id = newsItem.ID }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = newsItem.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

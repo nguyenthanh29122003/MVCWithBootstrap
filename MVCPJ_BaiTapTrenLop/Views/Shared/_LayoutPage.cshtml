@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- TinyMCE -->
+    <link href="~/Scripts/tinymce/skins/ui/oxide/skin.css" rel="stylesheet" />
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'advlist autolink lists link image charmap print preview anchor',
+            toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+            skin: 'oxide',
+            content_css: 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'
+        });
+    </script>
+
+    <style>
+        /* Navbar styling */
+        .navbar {
+            background-color: #343a40; /* Dark grey */
+            transition: background-color 0.5s;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+            /*.navbar:hover {
+                background-color: #495057;
+            }*/
+
+        .navbar-brand {
+            font-weight: bold;
+            color: #fff; /* White */
+            transition: color 0.5s;
+        }
+
+            .navbar-brand:hover {
+                color: #ffc107;
+            }
+
+        .navbar-nav .nav-link {
+            color: #fff; /* White */
+            margin-right: 10px;
+            transition: color 0.5s;
+        }
+
+            .navbar-nav .nav-link:hover {
+                color: #ffc107;
+            }
+
+        /* Breadcrumb styling */
+        .breadcrumb {
+            background-color: #f8f9fa; /* Light grey */
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.5s;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .breadcrumb:hover {
+                background-color: #e9ecef;
+            }
+
+        /* Footer styling */
+        footer {
+            background-color: #343a40; /* Dark grey */
+            transition: background-color 0.5s;
+        }
+
+            /*footer:hover {
+                background-color: #495057;
+            }*/
+
+            footer h5 {
+                color: #fff; /* White */
+                margin-bottom: 20px;
+                transition: color 0.5s;
+            }
+
+                footer h5:hover {
+                    color: #ffc107;
+                }
+
+            footer .nav-link {
+                color: #fff; /* White */
+                transition: color 0.5s;
+            }
+
+                footer .nav-link:hover {
+                    color: #ffc107;
+                }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Slider */
+        #mySlider {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: auto;
+        }
+
+        .carousel-control-prev, .carousel-control-next {
+            width: 5%;
+        }
+
+        .carousel-control-prev-icon, .carousel-control-next-icon {
+            background-color: #343a40; /* Dark grey */
+        }
+
+        .carousel-control-prev-icon {
+            margin-left: -1rem;
+        }
+
+        .carousel-control-next-icon {
+            margin-right: -1rem;
+        }
+
+        .new_card {
+            transition: all .3s ease-in
+        }
+        .new_card:hover {
+            background-color: #1e439b;
+            color: white;
+            transition: all .3s ease-in
+        }
+
+        .img_box2 img {
+            max-width: 100%;
+            height: auto;
+        }
+        .img_question img {
+            max-width: 100%;
+            height: auto;
+        }
+        .img_icon img{
+            margin-right: 25px;
+        }
+    </style>
+</head>
+
+<body style="background-color: rgb(249, 249, 249)">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <a class="navbar-brand" href="/Home/Index" style="padding-left: 30px"><img src="~/Images/System/Logo.png" style="width: 50px" /></a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse text-center" id="nav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item m-1">
+                    <a class="nav-link" href="/Home/Index">Trang chủ</a>
+                </li>
+                <li class="nav-item m-1">
+                    <a class="nav-link" href="/News/Index">Tin tức</a>
+                </li>
+                <li class="nav-item m-1">
+                    <a class="nav-link" href="/Score/Index">Tra cứu điểm</a>
+                </li>
+                <li class="nav-item m-1">
+                    <a class="nav-link" href="/Subject/Index">Thông tin học phần</a>
+                </li>
+                @*<li class="nav-item m-1">
+                    <a class="nav-link" href="/WorkingSchedule/Index">Tra cứu lịch công tác</a>
+                </li>*@
+                <li class="nav-item m-1">
+                    <a class="nav-link" href="/Teacher/Index">Thông tin giảng viên</a>
+                </li>
+                <li class="nav-item m-1">
+                    <a class="nav-link" href="/Documents/Index">Văn bản pháp quy</a>
+                </li>
+                <li class="nav-item m-1">
+                    <a class="nav-link" href="/About/Index">Giới thiệu</a>
+                </li>
+
+
+
+                @if (HttpContext.Current.Session["User"] != null)
+                {
+                    <li class="nav-item m-1 dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Tài khoản
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/Account/MyProfile">Thông tin cá nhân</a>
+                            <a class="dropdown-item" href="/Account/EditProfile">Chỉnh sửa thông tin</a>
+                            @if (HttpContext.Current.Session["RoleId"].ToString() == "1" || HttpContext.Current.Session["RoleId"].ToString() == "2")
+                            {
+                                <a class="dropdown-item" href="/Admin/Home/Index">Quản trị</a>
+                            }
+                            <a class="dropdown-item" href="/Account/Logout">Đăng xuất</a>
+                        </div>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item m-1">
+                        <a class="nav-link" href="/Account/Login">Đăng nhập</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-2" >
+        @if (ViewBag.Breadcrumbs != null && ViewBag.Breadcrumbs.Count > 0)
+        {
+            <ol class="breadcrumb p-3 bg-body-secondary rounded-3">
+                @foreach (var item in ViewBag.Breadcrumbs)
+                {
+                    <li class="breadcrumb-item ">
+                        @if (!string.IsNullOrEmpty(item.Url))
+                        {
+                            <a class="link-body-emphasis fw-semibold text-decoration-none" href="@item.Url">@item.Text</a>
+                        }
+                        else
+                        {
+                            @item.Text
+                        }
+                    </li>
+                }
+            </ol>
+        }
+        @RenderBody()
+    </div>
+
+    <footer class="py-5 mt-5">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5">
+                <div class="col mb-4">
+                    <a href="/" class="d-flex align-items-center mb-3 text-decoration-none">
+                        <h1 style="color: #343a40;"><img src="~/Images/System/Logo.png" style=" width:200px;"/></h1>
+                    </a>
+                    <p class="text-white">© 2024</p>
+                </div>
+
+                <div class="col"></div>
+
+                <div class="col">
+                    <h5>Liên kết</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Hướng nghiệp</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Sinh viên</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Thư viện</a></li>
+                    </ul>
+                </div>
+
+                <div class="col">
+                    <h5>Hỗ trợ</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Liên hệ</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link text-white">FAQs</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Chính sách</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Bản quyền</a></li>
+                    </ul>
+                </div>
+
+                <div class="col">
+                    <h5>Liên hệ</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Địa chỉ: Kim Chung - Hoài Đức - Hà Nội</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Email: aihocthanhdo@thanhdouni.edu.vn</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Điện thoại: +123456789</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Fax: +987654321</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Smooth scrolling to anchor -->
+    <script>
+        $(document).ready(function () {
+            // Smooth scrolling for navbar links
+            $("a").on('click', function (event) {
+                if (this.hash !== "") {
+                    event.preventDefault();
+
+                    let hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 800, function () {
+                        window.location.hash = hash;
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

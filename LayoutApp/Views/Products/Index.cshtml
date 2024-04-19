@@ -1,0 +1,27 @@
+﻿@model List<LayoutApp.Models.Product>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>This is products index page.</h2>
+@*<a href="/Products/Create">Create new products</a>*@
+<a href="@Url.Action("Create", "Products")">Create new products</a> @*@Url.Action("{Action}", "{Controller}")*@
+<table class="table">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Price</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (LayoutApp.Models.Product item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td><a href="/Products/Details/@item.Id">@item.Name</a></td>
+                <td>@item.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>

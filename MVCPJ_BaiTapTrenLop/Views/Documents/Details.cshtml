@@ -1,0 +1,14 @@
+﻿@model MVCPJ_BaiTapTrenLop.Models.LegalDocument
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<h6>Chi tiết văn bản pháp quy</h6>
+
+<h2>@Model.Title</h2>
+<h6>@Model.CreatedDate.ToString("H:mm - dd/MM/yyyy")</h6>
+<p>@Html.Raw(Model.Content)</p>
+
+<a class="btn btn-secondary" href="/Documents/Index">Trở lại</a>
